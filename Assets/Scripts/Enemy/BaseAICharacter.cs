@@ -2,40 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseAICharacter : MonoBehaviour
+public abstract class BaseAICharacter : MonoBehaviour
 {
+    protected GridMap mapController;
+    protected Vector2Int LookDirection;
     
-    protected static Vector2 LookDirection;
-    
-    [SerializeField]protected static float maxHealth;
-    public static float CurrentHealth{ get; protected set; }
-    
-    
-    
-    public static bool IsInvincible{ get; protected set; }
-    protected static int InvincibleTimer;
+    [SerializeField]protected float maxHealth;
+    public float CurrentHealth{ get; protected set; }
     
     
-    protected Rigidbody2D RigidBody;
+    
+    public bool IsInvincible{ get; protected set; }
+    protected int InvincibleTimer;
+    
     [SerializeField]protected Animator animator;
 
     protected SpriteRenderer spriteRenderer;
     
-    public Vector2Int CurrPosition { get; protected set; } = new (0,0);
-    protected Vector2Int direction = new(0, 0);
+    public Vector2Int CurrPosition { get; protected set; }
+    public Vector2Int originPosition;
     protected virtual void Start()
     {
-        RigidBody = GetComponent<Rigidbody2D>();
+        CurrPosition = originPosition;
+        mapController = FindObjectOfType<GridMap>();
+        LookDirection = new(1, 0);
         
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        
+        if(LookDirection.x * transform.localScale.x<0)
+            transform.localScale = new Vector2(LookDirection.x>0?0.2f:-0.2f,0.2f);
         //animator.SetFloat("ControlSpeed", IsControllable ? Mathf.Abs(moveX):0);
     }
-    protected virtual void Move()
+    
+    public virtual void Action()
+    {
+        
+    }
+    protected virtual void Attack(int damage)
+    {
+        //Debug.Log("attack");
+        mapController.player.GetHurt(damage);
+    }
+    public void ResetPosition()
+    {
+        CurrPosition = originPosition;
+    }
+
+    public virtual void GetHurt(int damage)
     {
         
     }
