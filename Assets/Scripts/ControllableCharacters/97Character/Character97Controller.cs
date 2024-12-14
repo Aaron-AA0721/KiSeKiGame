@@ -8,15 +8,17 @@ public class Character97Controller : BaseControllableCharacter
 {
     private bool AttackFlag;
 
-    
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        maxHealth = 2;
+        CurrentHealth = maxHealth;
         IsInvisible = false;
-        MaxInvisibleTime = 4;
-        InvisibleTimerRecoveryRate = 1;
-        InvisibleTimerRecoveryTimer = 1;
+        MaxInvisibleTime = 5;
+        InvisibleTimerRecoveryTimeRequired = 2;
+        InvisibleTimerRecoveryTimer = -1;
         InvisibleTimer = MaxInvisibleTime;
     }
 
@@ -51,6 +53,7 @@ public class Character97Controller : BaseControllableCharacter
         //Debug.Log(InvisibleTimer);
         SetAlpha();
     }
+
     protected override void Control()
     {
         base.Control();
@@ -65,12 +68,13 @@ public class Character97Controller : BaseControllableCharacter
             {
                 EnterInvisibleState();
             }
-            
+
         }
 
         if (IsInStep)
         {
             IsInStep = false;
+            
             if (IsInvisible)
             {
                 InvisibleTimer -= 1;
@@ -82,8 +86,14 @@ public class Character97Controller : BaseControllableCharacter
             else
             {
                 if (InvisibleTimerRecoveryTimer > 0) InvisibleTimerRecoveryTimer--;
-                if (InvisibleTimerRecoveryTimer < 0) InvisibleTimer++;
+                if (InvisibleTimerRecoveryTimer <= 0)
+                {
+                    InvisibleTimer++;
+                    if (InvisibleTimer > MaxInvisibleTime) InvisibleTimer = MaxInvisibleTime;
+                    //Debug.Log(InvincibleTimer);
+                }
             }
+
             mapController.UpdateCostMap();
             foreach (var enemy in FindObjectsOfType<BaseAICharacter>())
             {
@@ -95,10 +105,11 @@ public class Character97Controller : BaseControllableCharacter
                 Attack();
                 AttackFlag = false;
             }
+            Debug.Log(InvisibleTimer);
         }
-        
+
     }
-    
+
 
     void SetAlpha()
     {
@@ -106,31 +117,40 @@ public class Character97Controller : BaseControllableCharacter
         {
             if (obj.name.Contains("lex"))
             {
-                obj.color = new Color(obj.color.r,obj.color.g,obj.color.b,IsInvisible?0.9f:1f);
+                obj.color = new Color(obj.color.r, obj.color.g, obj.color.b, IsInvisible ? 0.9f : 1f);
             }
-            else obj.color = new Color(obj.color.r,obj.color.g,obj.color.b,IsInvisible?0.6f:1f);
+            else obj.color = new Color(obj.color.r, obj.color.g, obj.color.b, IsInvisible ? 0.6f : 1f);
         }
     }
+
     protected override void Attack()
     {
         base.Attack();
         mapController.AttackEnemy(CurrPosition, 1);
-        mapController.AttackEnemy(CurrPosition+LookDirection,1);
+        mapController.AttackEnemy(CurrPosition + LookDirection, 1);
     }
 
     void EnterInvisibleState()
     {
-        InvisibleTimer = MaxInvisibleTime + 1;
+        if (InvisibleTimerRecoveryTimer > 0 || InvisibleTimer <= 0)
+        {
+            IsInStep = false;
+            return;
+        }
+        InvisibleTimer++;
         IsInvisible = true;
     }
+
     void ExitInvisibleState()
     {
         IsInvisible = false;
-        InvisibleTimerRecoveryTimer = 1;
+        InvisibleTimerRecoveryTimer = InvisibleTimerRecoveryTimeRequired;
         AttackFlag = true;
     }
+
     public override void GetHurt(int damage)
     {
         base.GetHurt(damage);
+        HealthChange(-damage);
     }
 }

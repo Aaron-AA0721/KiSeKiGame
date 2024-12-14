@@ -32,6 +32,11 @@ public abstract class BaseAICharacter : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        if (CurrentHealth <= 0)
+        {
+            Death();
+            return;
+        }
         if(LookDirection.x * transform.localScale.x<0)
             transform.localScale = new Vector2(LookDirection.x>0?0.2f:-0.2f,0.2f);
         //animator.SetFloat("ControlSpeed", IsControllable ? Mathf.Abs(moveX):0);
@@ -54,5 +59,18 @@ public abstract class BaseAICharacter : MonoBehaviour
     public virtual void GetHurt(int damage)
     {
         
+    }
+    protected virtual void HealthChange(int delta)
+    {
+        CurrentHealth += delta;
+        if (CurrentHealth < 0) {
+            CurrentHealth = 0;
+            //Death();
+        }
+        if (CurrentHealth > maxHealth) CurrentHealth = maxHealth;
+    }
+    protected virtual void Death()
+    {
+        Destroy(gameObject);
     }
 }

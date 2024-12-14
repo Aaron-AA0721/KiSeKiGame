@@ -9,6 +9,8 @@ public class moeController : BaseAICharacter
     protected override void Start()
     {
         base.Start();
+        maxHealth = 1;
+        CurrentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -144,5 +146,11 @@ public class moeController : BaseAICharacter
     protected override void Attack(int damage)
     {
         base.Attack(damage);
+    }
+
+    public override void GetHurt(int damage)
+    {
+        base.GetHurt(damage);
+        HealthChange(-damage);
     }
 }

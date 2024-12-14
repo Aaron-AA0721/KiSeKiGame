@@ -21,10 +21,10 @@ public abstract class BaseControllableCharacter : MonoBehaviour
     protected static float InvincibleTimer;
 
     public bool IsInvisible { get; protected set; }
-    protected int MaxInvisibleTime = 4;
+    protected int MaxInvisibleTime;
     protected int InvisibleTimer;
-    protected int InvisibleTimerRecoveryRate = 2;
-    protected int InvisibleTimerRecoveryTimer = 1;
+    protected int InvisibleTimerRecoveryTimeRequired;
+    protected int InvisibleTimerRecoveryTimer;
     
     public static bool IsControllable { get; protected set; } = true;
     protected static float ControllableTimer;
@@ -132,5 +132,12 @@ public abstract class BaseControllableCharacter : MonoBehaviour
     public virtual void GetHurt(int damage)
     {
         
+    }
+    protected virtual void HealthChange(int delta)
+    {
+        CurrentHealth += delta;
+        if (CurrentHealth < 0) CurrentHealth = 0;
+        if (CurrentHealth > maxHealth) CurrentHealth = maxHealth;
+        Debug.Log("HP:"+CurrentHealth);
     }
 }
