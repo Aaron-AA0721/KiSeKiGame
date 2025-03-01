@@ -164,7 +164,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0, y: 0, z: -165.038}
+        value: {x: 0, y: 0, z: -171.219}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -2306,7 +2306,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -165.038
+        value: -171.219
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -5309,7 +5309,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Body/Larm1
+    path: Body/cloak/bone_40
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5321,7 +5321,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Body/Larm1
+    path: Body/cloak/bone_40
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5333,7 +5333,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Body/Larm1
+    path: Body/cloak/bone_40
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5885,7 +5885,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Body/cloak/bone_40
+    path: Body/head/ponytailR
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5897,7 +5897,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Body/cloak/bone_40
+    path: Body/head/ponytailR
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5909,7 +5909,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Body/cloak/bone_40
+    path: Body/head/ponytailR
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -6101,7 +6101,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Body/head/ponytailR
+    path: Body/Larm1
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -6113,7 +6113,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Body/head/ponytailR
+    path: Body/Larm1
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -6125,7 +6125,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Body/head/ponytailR
+    path: Body/Larm1
     classID: 4
     script: {fileID: 0}
     flags: 0
