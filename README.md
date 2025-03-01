@@ -22,9 +22,9 @@ description: Spell-weaving Elf<br>
 Character Art (x)<br>
 Move&Attack(x)<br>
 Wind magic ball, with damage increasing based on charge time<br>
-Skill 1 "Windstep" (√) <br>
+Skill 1 "Windstep" (x) <br>
 Dash forward, minor damage and minor knockback and slows enemies<br>
-Skill 2 Assassinate(x)<br>
-Dash forward, leaving a trail of wind that deals minor damage and slows enemies who pass through it<br>
-Skill 3 Shadowstride(x)<br>
-Transform into shadow, greatly increasing your movement speed while distorting the flow of time, moving freely through a frozen world.<br>
+Skill 2 <br>
+Attack enemies in a range<br>
+Skill 3 <br>
+fly and enhance skills<br>
